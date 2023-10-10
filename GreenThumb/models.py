@@ -39,57 +39,54 @@ class Company(models.Model):
     contact_info = models.CharField(max_length=100)
     postal_code = models.CharField(max_length=10)
     employee_count = models.ForeignKey(
-        'EmployeeCount',
+        "EmployeeCount",
         on_delete=models.DO_NOTHING,
         null=True,
-        related_name='companies_by_employee_count'
+        related_name="companies_by_employee_count",
     )
     annual_electricity_budget = models.ForeignKey(
-        'ElectricityBudget',
+        "ElectricityBudget",
         on_delete=models.DO_NOTHING,
         null=True,
-        related_name='companies_by_electricity_budget'
+        related_name="companies_by_electricity_budget",
     )
-
 
     company_sector = models.ForeignKey(
-        'Companysector',
+        "Companysector",
         on_delete=models.DO_NOTHING,
         null=True,
-        related_name='companies_by_sector'
+        related_name="companies_by_sector",
     )
     annual_natural_gas_budget = models.ForeignKey(
-        'NaturalGasBudget',
+        "NaturalGasBudget",
         on_delete=models.DO_NOTHING,
         null=True,
-        related_name='companies_by_gas_budget'
+        related_name="companies_by_gas_budget",
     )
 
     def __str__(self):
         return self.company_name
 
-class Program(models.Model):
-        program_name = models.CharField(max_length=100)
-        link = models.URLField()
-        project_type = models.CharField(max_length=50)
-        supporting_docs = models.TextField()  # Use TextField to store links as a string
-        description = models.TextField()
-        eligible_employee_count = models.ManyToManyField(
-            'EmployeeCount',
-            related_name='programs_by_employee_count'
-        )
-        eligible_annual_electricity_budget = models.ManyToManyField(
-            'ElectricityBudget',
-            related_name='programs_by_electricity_budget'
-        )
-        eligible_company_sector = models.ManyToManyField(
-        'Companysector',
-        related_name='programs_to_sector',
-        )
-        eligible_annual_natural_gas_budget = models.ManyToManyField(
-            'NaturalGasBudget',
-            related_name='programs_by_gas_budget'
-        )
 
-        def __str__(self):
-            return self.program_name
+class Program(models.Model):
+    program_name = models.CharField(max_length=100)
+    link = models.URLField()
+    project_type = models.CharField(max_length=50)
+    supporting_docs = models.TextField()  # Use TextField to store links as a string
+    description = models.TextField()
+    eligible_employee_count = models.ManyToManyField(
+        "EmployeeCount", related_name="programs_by_employee_count"
+    )
+    eligible_annual_electricity_budget = models.ManyToManyField(
+        "ElectricityBudget", related_name="programs_by_electricity_budget"
+    )
+    eligible_company_sector = models.ManyToManyField(
+        "Companysector",
+        related_name="programs_to_sector",
+    )
+    eligible_annual_natural_gas_budget = models.ManyToManyField(
+        "NaturalGasBudget", related_name="programs_by_gas_budget"
+    )
+
+    def __str__(self):
+        return self.program_name

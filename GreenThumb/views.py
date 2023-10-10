@@ -1,10 +1,18 @@
 from django.shortcuts import render
+from django.http import HttpResponse
+from .models import Program
 
-# Create your views here.
-from django.views.generic import ListView
-from .models import company
+# from .models import company
 
 
-#class companies(ListView):
-    #model = Funding
-    #template_name = "GreenThumb/home.html"
+# class companies(ListView):
+# model = Funding
+# template_name = "GreenThumb/home.html"
+
+
+def fetch(request):
+    obj = Program.objects.all()
+    context = {
+        "data": obj,
+    }
+    return render(request, "index.html", context)
