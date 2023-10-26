@@ -1,18 +1,46 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Data Display</title>
+    <title>Results</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              clifford: '#da373d',
+            },
+          },
+        },
+      }
+    </script>
   </head>
-  <body>
-    <h1>Data from Model 1</h1>
-    <ul>
-      {% for item in data %}
-      <li>ID: {{item.id}}</li>
-      <li>Name: {{ item.program_name }}</li>
-      <li>Type: {{item.project_type}}</li>
-      <li>Link: {{item.link}}</li>
-      <br />
-      {% endfor %}
-    </ul>
+  <body class="bg-green-200">
+    <div class="mx-auto rounded-lg bg-white max-w-lg mt-48 p-8">
+      <h1 class="text-2xl mb-3 font-medium text-center">Matched Programs</h1>
+      <div class="flex flex-col gap-5">
+        {% for item in data %}
+        <div class="bg-gray-200 p-3 rounded-md max-w-24 overflow-auto">
+          <p>ID: {{item.id}}</p>
+          <p>Name: {{ item.program_name }}</p>
+          <p>Type: {{item.project_type}}</p>
+          <p>
+            Link:
+            <span
+              class="cursor-pointer underline text-blue-700 text-wrap whitespace-pre-line"
+              >{{item.link}}</span
+            >
+          </p>
+          <button
+            class="px-3 py-2 rounded-md bg-blue-500 text-lg font-medium text-white my-3 cursor-pointer"
+          >
+            Go To Program
+          </button>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
   </body>
 </html>
