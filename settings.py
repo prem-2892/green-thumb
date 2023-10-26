@@ -38,6 +38,8 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     'GreenThumb.apps.GreenthumbConfig',
+    'django_extensions',
+
 ]
 
 MIDDLEWARE = [
