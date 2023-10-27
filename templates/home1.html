@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Company Information Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #D4E157; /* Light Green Background */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            position: relative;
+        }
+
+        body::before {
+            content: "🍃";
+            font-size: 300px;
+            opacity: 0.3;
+            position: absolute;
+            top: 20px;
+            left: 20px;
+        }
+
+        body::after {
+            content: "💡";
+            font-size: 300px;
+            opacity: 0.6;
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+        }
+
+
+        h1 {
+            background-color: #FBC02D; /* Yellow Header */
+            color: #333; /* Dark Text Color */
+            padding: 20px;
+            text-align: center;
+        }
+
+        .form-container {
+            background-color: #FFFFFF; /* White Form Background */
+            padding: 20px;
+            border: 2px solid #333; /* Black Border */
+            border-radius: 10px; /* Rounded Corners */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 700px;
+        }
+
+        input[type="submit"] {
+            background-color: #FBC02D; /* Yellow Button */
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #FFD740; /* Lighter Yellow on Hover */
+        }
+
+        #program-results {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #FBC02D; /* Yellow Header for Table */
+            color: #333; /* Dark Text Color */
+        }
+
+        tr:nth-child(even) {
+            background-color: #F9FBE7; /* Light Green Rows */
+        }
+
+        a {
+            color: #00C853; /* Green Link Color */
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Green Thumb <span style="color: #00C853;">👍</span></h1>
+
+    <div class="form-container">
+        <form method="post" action="{% url 'index' %}">
+            {% csrf_token %}
+            {{ formset.management_form }}
+
+            {% for form in formset %}
+                {{ form.as_p }}
+            {% endfor %}
+
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+
+    <div id="program-results">
+        <h2>Suitable Programs</h2>
+        <table>
+            <tr>
+                <th>Program Name</th>
+                <th>Link</th>
+                <th>Project Type</th>
+                <th>Supporting Docs</th>
+                <th>Description</th>
+            </tr>
+            {% for program in suitable_programs %}
+                <tr>
+                    <td>{{ program.program_name }}</td>
+                    <td><a href="{{ program.link }}" target="_blank">{{ program.program_name }}</a></td>
+                    <td>{{ program.project_type }}</td>
+                    <td>{{ program.supporting_docs }}</td>
+                    <td>{{ program.description }}</td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+</body>
+</html>

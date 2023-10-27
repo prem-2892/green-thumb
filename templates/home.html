@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Company Information Form</title>
+</head>
+<body>
+    <h1>Company Information</h1>
+
+    <form method="post" action="{% url 'index' %}">
+        {% csrf_token %}
+        {{ formset.management_form }}
+
+        {% for form in formset %}
+            {{ form.as_p }}
+        {% endfor %}
+
+        <input type="submit" value="Submit">
+    </form>
+
+    <div id="program-results">
+        <h2>Suitable Programs</h2>
+        <table>
+            <tr>
+                <th>Program Name</th>
+                <th>Link</th>
+                <th>Project Type</th>
+                <th>Supporting Docs</th>
+                <th>Description</th>
+            </tr>
+            {% for program in suitable_programs %}
+                <tr>
+                    <td>{{ program.program_name }}</td>
+                    <td><a href="{{ program.link }}" target="_blank">{{ program.program_name }}</a></td>
+                    <td>{{ program.project_type }}</td>
+                    <td>{{ program.supporting_docs }}</td>
+                    <td>{{ program.description }}</td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+</body>
+</html>
