@@ -1,3 +1,6 @@
+{% load crispy_forms_tags %}
+{% load bootstrap4 %}
+
 <!DOCTYPE html>
 <html>
   <head>
@@ -25,7 +28,7 @@
         line-height: 1.75rem; 
       }
 
-      .form-main > p {
+      {% comment %} .form-main > p {
         display: flex; 
         flex-direction: column; 
         gap: 0.25rem;
@@ -56,56 +59,25 @@
         line-height: 1.5rem;
         width: fit-content;
         max-width: 10rem;
-      }
+      } {% endcomment %}
     </style>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
   </head>
   <body class='bg-slate-500 m-8'>
     <div class="flex rounded-lg">
-      <div class="hidden md:block md:bg-white md:p-4 w-3/4 rounded-lg md:rounded-r-none">
-        <div class="md:bg-slate-300 w-full md:py-4 md:px-8 h-full rounded-lg">
-          <h3 class="text-3xl font-bold text-center mt-24 leading-relaxed">Let us help you save the Environment!</h3>
-          <p class="text-gray-500 font-light mt-2">Our process is very easy and quick so that you can save your precious time while we save the environment with your help.</p>
-        </div>
-      </div>
+      
       <div class="bg-white py-4 px-8 rounded-lg md:rounded-l-none w-full">
         <h1 class="text-3xl font-bold text-center my-2">Green Thumb</h1>
         <div class="form-container">
-          <form method="post" action="{% url 'index' %}" class='form-main'>
-            {% csrf_token %} {{ formset.management_form }} 
-            {% for form in formset %} 
-              {{ form.as_p }} 
-            {% endfor %}
-            <input type="submit" value="Submit" class='mt-3 bg-blue-500 text-white font-medium border-0 p-3 cta' />
+          <form method="post" action="{% url 'index' %}" class='w-fit mx-auto'>
+            {% csrf_token %}  
+            {% crispy form %} 
+            
           </form>
         </div>
       </div>
     </div>
-    {% comment %} <div id="program-results" class="overflow-x-scroll w-full bg-white mt-8 p-4 rounded-lg">
-      <h2 class="text-2xl font-bold my-3">Matched Programs</h2>
-      <table style="width: 100%">
-        <tr>
-          <th style="width: 20%" >Program Name</th>
-          <th style="width: 20%" >Link</th>
-          <th style="width: 20%" >Project Type</th>
-          <th style="width: 50px" class="break-words">Supporting Docs</th>
-          <th style="width: 20%" >Description</th>
-        </tr>
-        {% for program in suitable_programs %}
-        <tr>
-          <td>{{ program.program_name }}</td>
-          <td>
-            <a href="{{ program.link }}" target="_blank"
-              >{{ program.program_name }}</a
-            >
-          </td>
-          <td>{{ program.project_type }}</td>
-          <td class="break-words" style="width: 20%">{{ program.supporting_docs }}</td>
-          <td>{{ program.description }}</td>
-        </tr>
-        {% endfor %}
-      </table>
-    </div> {% endcomment %}
-
+    
     <div class="mt-4 relative overflow-x-auto shadow-md sm:rounded-lg">
       <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
           <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
