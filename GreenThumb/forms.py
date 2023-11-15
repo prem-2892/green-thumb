@@ -21,13 +21,13 @@ class CompanyForm(ModelForm):
                 "company_name",
                 "contact_info",
                 "postal_code",
-                css_class="flex flex-col md:flex-row gap-4 md:items-end",
+                css_class="flex flex-col md:flex-row md:justify-between md:items-end",
             ),
             Div(
                 "employee_count",
                 "annual_electricity_budget",
                 "company_sector",
-                css_class="flex flex-col md:flex-row gap-4 md:items-end",
+                css_class="flex flex-col md:flex-row md:justify-between md:items-end",
             ),
             Div(
                 "annual_natural_gas_budget",
