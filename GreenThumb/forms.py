@@ -21,17 +21,17 @@ class CompanyForm(ModelForm):
                 "company_name",
                 "contact_info",
                 "postal_code",
-                css_class="flex flex-col md:flex-row md:justify-between md:items-end",
+                css_class="flex flex-col md:flex-row md:justify-between md:items-end absolute-white",
             ),
             Div(
                 "employee_count",
                 "annual_electricity_budget",
                 "company_sector",
-                css_class="flex flex-col md:flex-row md:justify-between md:items-end",
+                css_class="flex flex-col md:flex-row md:justify-between md:items-end absolute-white",
             ),
             Div(
                 "annual_natural_gas_budget",
-                css_class="flex gap-4 items-end",
+                css_class="flex gap-4 items-end absolute-white",
             ),
             # Add more Div elements as needed
         )
