@@ -20,46 +20,6 @@
       }
     </script>
     <style>
-      .cta{
-        border: none;
-        padding-inline: 0.75rem !important;
-        padding-block: 0.5rem !important;
-        font-size: 1.125rem;
-        line-height: 1.75rem; 
-      }
-
-      {% comment %} .form-main > p {
-        display: flex; 
-        flex-direction: column; 
-        gap: 0.25rem;
-        margin-block: 0.25rem;
-      }
-
-      .form-main input {
-        padding-top: 0.25rem;
-        padding-bottom: 0.25rem; 
-        padding-left: 0.75rem;
-        padding-right: 0.75rem; 
-        border-radius: 0.375rem; 
-        border-width: 1px; 
-        border-color: #D1D5DB;
-        font-size: 1rem;
-        line-height: 1.5rem;
-      }
-
-      .form-main select{
-        padding-top: 0.25rem;
-        padding-bottom: 0.25rem; 
-        padding-left: 0.75rem;
-        padding-right: 0.75rem; 
-        border-radius: 0.375rem; 
-        border-width: 1px; 
-        border-color: #D1D5DB; 
-        font-size: 1rem;
-        line-height: 1.5rem;
-        width: fit-content;
-        max-width: 10rem;
-      } {% endcomment %}
     </style>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
   </head>
@@ -69,7 +29,7 @@
       <div class="bg-white py-4 px-8 rounded-lg md:rounded-l-none w-full">
         <h1 class="text-3xl font-bold text-center my-2">Green Thumb</h1>
         <div class="form-container">
-          <form method="post" action="{% url 'index' %}" class='w-fit mx-auto'>
+          <form method="post" action="{% url 'index' %}" class='w-auto mx-auto'>
             {% csrf_token %}  
             {% crispy form %} 
             
