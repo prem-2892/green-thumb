@@ -299,7 +299,7 @@
           <div class="right-panel">
                 <h3 class='text-center text-2xl font-bold text-green-500'>Green Thumb</h3>
                 <h6 class='text-center text-lg font-bold text-green-400'>E2F</h6>
-              <div class="form-container">
+                <div class="form-container">
                   <form method="post" action="{% url 'index' %}" class='w-fit mx-auto'>
                     {% csrf_token %}  
                     {{ formset.management_form }}
@@ -316,39 +316,39 @@
                   </form>
               </div>
           </div>
-              <div class="matched-programs">
-                  <h2>Matched Programs</h2>
-                  <table class="matched-table">
-                      <thead>
-                      <tr>
-                          <th>Program Name</th>
-                          <th>Link</th>
-                          <th>Project Type</th>
-                          <th>Supporting Docs</th>
-                          <th>Description</th>
-                      </tr>
-                      </thead>
-                      <tbody>
-                        {% for program in suitable_programs %}
-                            <tr>
-                                <td>{{ program.program_name }}</td>
-                                <td>
-                                    <a href="{{ program.link }}" target="_blank">{{ program.program_name }}</a>
-                                </td>
-                                <td>{{ program.project_type }}</td>
-                                <td>{{ program.supporting_docs }}</td>
-                                <td>{{ program.description }}</td>
-                            </tr>
-                        {% endfor %}
-                      </tbody>
-                  </table>
-  
-              <div class="matched-buttons">
-              <button class="cta">View All</button>
-              <button class="cta">Download</button>
-              </div>
-              </div>
-
+          {% if suitable_programs %}
+          <div class="matched-programs">
+            <h2>Matched Programs</h2>
+            <table class="matched-table">
+                <thead>
+                    <tr>
+                        <th>Program Name</th>
+                        <th>Link</th>
+                        <th>Project Type</th>
+                        <th>Supporting Docs</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for program in suitable_programs %}
+                    <tr>
+                        <td>{{ program.program_name }}</td>
+                        <td>
+                            <a href="{{ program.link }}" target="_blank">{{ program.program_name }}</a>
+                        </td>
+                        <td>{{ program.project_type }}</td>
+                        <td>{{ program.supporting_docs }}</td>
+                        <td>{{ program.description }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <div class="matched-buttons">
+                <button class="cta">View All</button>
+                <button class="cta">Download</button>
+            </div>
+        </div>
+        {% endif %}
               <div class="faq-section">
                 <h2>Frequently Asked Questions</h2>
     
